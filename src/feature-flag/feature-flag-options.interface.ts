@@ -1,4 +1,4 @@
 export interface FeatureFlagOptions {
-    environments?: string[];
+    entornos?: string[];
     usuariosPermitidos?: string[];
 }
