@@ -7,6 +7,9 @@ export class FeatureFlagService {
 
     /**
      * Determina si una feature está habilitada basada en las opciones y contexto
+     * @param options Las opciones correspondientes a la Feature Flag
+     * @param context El contexto de la peticion HTTP para acceder a entorno y usuario
+     * @returns el resultado de la evaluación de la Feature Flag (true | false)
      */
     featureHabilitada(options: FeatureFlagOptions, context: FeatureFlagContext): boolean {
         const { entornos, usuariosPermitidos } = options
