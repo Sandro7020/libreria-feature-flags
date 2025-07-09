@@ -18,7 +18,7 @@ Un paquete para NestJS que permite habilitar o deshabilitar funcionalidades de f
 ## 📦 Instalación
 
 ```bash
-npm install git+https://github.com/Sandro7020/libreria-feature-flags
+npm install git+https://github.com/Sandro7020/libreria-feature-flags.git
 ```
 
 ---
