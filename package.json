@@ -1,12 +1,14 @@
 {
   "name": "libreria-feature-flags",
-  "version": "0.0.1",
-  "description": "libreria para configurar feature flags",
+  "version": "1.0.0",
+  "description": "Libreria para configurar habilitar / deshabilitar funcionalidades en NestJS con decoradores de feature flags",
   "author": "Alessandro Ventresca && David Yépez",
   "private": true,
   "license": "UNLICENSED",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "nest build",
+    "build": "tsc -p tsconfig.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -19,14 +21,29 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
-  "dependencies": {
+  "keywords": [
+    "nestjs",
+    "feature-flags",
+    "decorator",
+    "guard",
+    "typescript",
+    "toggle",
+    "feature-toggle"
+  ],
+  "homepage": "https://github.com/Sandro7020/libreria-feature-flags#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sandro7020/libreria-feature-flags.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sandro7020/libreria-feature-flags/issues"
+  },
+  "devDependencies": {
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
-  },
-  "devDependencies": {
+    "rxjs": "^7.8.1",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
     "@nestjs/cli": "^11.0.0",
@@ -36,7 +53,7 @@
     "@swc/core": "^1.10.7",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.10.7",
+    "@types/node": "^22.16.0",
     "@types/supertest": "^6.0.2",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
