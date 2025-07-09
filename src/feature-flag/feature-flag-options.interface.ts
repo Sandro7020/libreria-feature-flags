@@ -1,4 +1,9 @@
 export interface FeatureFlagOptions {
-    environments?: string[];
-    usuariosPermitidos?: string[];
+    entornos?: string[]
+    usuariosPermitidos?: string[]
+}
+
+export interface FeatureFlagContext {
+    entorno: string
+    usuario?: string
 }
