@@ -1,7 +1,5 @@
-import { FeatureFlagOptions } from './feature-flag-options.interface';
+import type { FeatureFlagOptions, FeatureFlagContext } from "./feature-flag-options.interface";
 export declare class FeatureFlagService {
-    featureHabilitada(opciones: FeatureFlagOptions, contexto: {
-        entorno: string;
-        usuario?: string;
-    }): boolean;
+    private readonly logger;
+    featureHabilitada(options: FeatureFlagOptions, context: FeatureFlagContext): boolean;
 }

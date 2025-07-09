@@ -8,15 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var FeatureFlagGuard_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FeatureFlagGuard = void 0;
 const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
 const feature_flag_decorator_1 = require("./feature-flag.decorator");
 const feature_flag_service_1 = require("./feature-flag.service");
-let FeatureFlagGuard = class FeatureFlagGuard {
+let FeatureFlagGuard = FeatureFlagGuard_1 = class FeatureFlagGuard {
     reflector;
     servicioFeatureFlag;
+    logger = new common_1.Logger(FeatureFlagGuard_1.name);
     constructor(reflector, servicioFeatureFlag) {
         this.reflector = reflector;
         this.servicioFeatureFlag = servicioFeatureFlag;
@@ -29,11 +31,19 @@ let FeatureFlagGuard = class FeatureFlagGuard {
         const peticion = context.switchToHttp().getRequest();
         const user = peticion.user?.username || peticion.headers['x-user'];
         const ent = process.env.NODE_ENV || 'dev';
-        return this.servicioFeatureFlag.featureHabilitada(opcionesFeature, { entorno: ent, usuario: user });
+        const flagContext = {
+            entorno: ent,
+            usuario: user,
+        };
+        const habilitado = this.servicioFeatureFlag.featureHabilitada(opcionesFeature, flagContext);
+        if (!habilitado) {
+            this.logger.warn(`Feature flag bloqueado para: ${user}, entorno: ${ent}`);
+        }
+        return habilitado;
     }
 };
 exports.FeatureFlagGuard = FeatureFlagGuard;
-exports.FeatureFlagGuard = FeatureFlagGuard = __decorate([
+exports.FeatureFlagGuard = FeatureFlagGuard = FeatureFlagGuard_1 = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [core_1.Reflector,
         feature_flag_service_1.FeatureFlagService])

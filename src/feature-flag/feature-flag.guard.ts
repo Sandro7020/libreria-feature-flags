@@ -1,7 +1,7 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable, Logger } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
-import { FeatureFlagOptions } from './feature-flag-options.interface';
+import { FeatureFlagOptions, FeatureFlagContext } from './feature-flag-options.interface';
 import { FEATURE_FLAG_KEY } from './feature-flag.decorator';
 import { FeatureFlagService } from './feature-flag.service';
 
@@ -10,6 +10,8 @@ import { FeatureFlagService } from './feature-flag.service';
  */
 @Injectable()
 export class FeatureFlagGuard implements CanActivate {
+  private readonly logger = new Logger(FeatureFlagGuard.name)
+  
   constructor(
     private reflector: Reflector,
     private servicioFeatureFlag: FeatureFlagService
@@ -30,7 +32,18 @@ export class FeatureFlagGuard implements CanActivate {
     const user = peticion.user?.username || peticion.headers['x-user'];
     const ent = process.env.NODE_ENV || 'dev';
 
+    const flagContext: FeatureFlagContext = {
+      entorno: ent,
+      usuario: user,
+    }
+
     // Se validan las opciones
-    return this.servicioFeatureFlag.featureHabilitada(opcionesFeature, { entorno: ent, usuario: user});
+    const habilitado = this.servicioFeatureFlag.featureHabilitada(opcionesFeature, flagContext);
+
+    if (!habilitado) {
+      this.logger.warn(`Feature flag bloqueado para: ${user}, entorno: ${ent}`);
+    }
+
+    return habilitado;
   }
 }
