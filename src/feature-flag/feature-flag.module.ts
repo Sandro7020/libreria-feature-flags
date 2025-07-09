@@ -12,6 +12,6 @@ import { FeatureFlagGuard } from './feature-flag.guard';
       useClass: FeatureFlagGuard,
     },
   ],
-  exports: [FeatureFlagService]
+  exports: [FeatureFlagService, FeatureFlagGuard]
 })
 export class FeatureFlagModule {}

@@ -18,4 +18,5 @@ __exportStar(require("./src/feature-flag/feature-flag.module"), exports);
 __exportStar(require("./src/feature-flag/feature-flag.decorator"), exports);
 __exportStar(require("./src/feature-flag/feature-flag-options.interface"), exports);
 __exportStar(require("./src/feature-flag/feature-flag.service"), exports);
+__exportStar(require("./src/feature-flag/feature-flag.guard"), exports);
 //# sourceMappingURL=index.js.map

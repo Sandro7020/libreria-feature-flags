@@ -24,7 +24,7 @@ exports.FeatureFlagModule = FeatureFlagModule = __decorate([
                 useClass: feature_flag_guard_1.FeatureFlagGuard,
             },
         ],
-        exports: [feature_flag_service_1.FeatureFlagService]
+        exports: [feature_flag_service_1.FeatureFlagService, feature_flag_guard_1.FeatureFlagGuard]
     })
 ], FeatureFlagModule);
 //# sourceMappingURL=feature-flag.module.js.map

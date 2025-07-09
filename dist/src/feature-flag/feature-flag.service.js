@@ -15,7 +15,7 @@ let FeatureFlagService = class FeatureFlagService {
         const entornoPermitido = !entornos || entornos.includes(entorno);
         let usuarioPermitido = !usuariosPermitidos;
         if (usuario && usuariosPermitidos) {
-            usuarioPermitido = usuarioPermitido || usuariosPermitidos.includes(usuario);
+            usuarioPermitido = usuariosPermitidos.includes(usuario);
         }
         return entornoPermitido && usuarioPermitido;
     }

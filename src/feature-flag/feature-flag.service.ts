@@ -13,7 +13,7 @@ export class FeatureFlagService {
         
         let usuarioPermitido: boolean = !usuariosPermitidos;
         if (usuario && usuariosPermitidos) {
-            usuarioPermitido = usuarioPermitido || usuariosPermitidos.includes(usuario);
+            usuarioPermitido = usuariosPermitidos.includes(usuario);
         }
         
         return entornoPermitido && usuarioPermitido;
